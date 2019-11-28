@@ -72,6 +72,13 @@ stunnel_package:
     - user: {{ stunnel.user }}
     - makedirs: True
 
+{% if grains['os_family'] == 'FreeBSD' -%}
+pidfile_sysrc:
+  sysrc.managed:
+    - name: stunnel_pidfile
+    - value: {{ stunnel.pid_dir }}/stunnel.pid
+{% endif -%}
+
 {% if grains['os_family'] == 'Debian' -%}
 {{ stunnel.default }}:
   file.managed:
