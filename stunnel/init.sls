@@ -47,7 +47,7 @@ stunnel_package:
       - service: stunnel_service
 
 {% if grains['os_family'] == 'FreeBSD' -%}
-{{ stunnel.conf_dir }}/conf.d/pid.conf:
+{{ stunnel.conf_dir }}/conf.d/00-pid.conf:
   file.absent: []
 {% endif -%}
 
